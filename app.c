@@ -29,16 +29,17 @@
 #define  APP_DEFAULT_TASK_PRIORITY       22u
 #define  APP_IDLE_TASK_PRIORITY         24u
 #define  APP_MENU_TASK_PRIORITY       20u
-#define  tauSlider                      2u
-#define  tauDisplay                     100u
+#define  APP_PHYS_TASK_PRIORITY       19u
+#define  tauSlider                      1u
+#define  tauDisplay                     1u
 #define Max_Safe_Speed                   25
 #define discharge_cost                  50
 #define max_shield_and_start            300
 #define railgun_charge_rate             5
 #define railgun_max_charge             50
 #define game_destruction_max            118
-#define game_destruction_evac           2
-#define hits_to_destroy                 2
+#define game_destruction_evac           5
+#define hits_to_destroy                 1
 
 //Global structs only accessed upon pending mutex for related struct, then posting.
 PlayerStatistics PlayerStats;
@@ -375,7 +376,7 @@ void  App_Physics_Creation (void)
                  "Physics Task.",                    /* Name to help debugging.     */
                  &App_Physics_Task,                   /* Pointer to the task's code. */
                   DEF_NULL,                          /* Pointer to task's argument. */
-                  APP_DEFAULT_TASK_PRIORITY,             /* Task's priority.            */
+                  APP_PHYS_TASK_PRIORITY,             /* Task's priority.            */
                  &App_PhysicsTaskStk[0],             /* Pointer to base of stack.   */
                  (APP_DEFAULT_TASK_STK_SIZE / 10u),  /* Stack limit, from base.     */
                   APP_DEFAULT_TASK_STK_SIZE,         /* Stack size, in CPU_STK.     */
